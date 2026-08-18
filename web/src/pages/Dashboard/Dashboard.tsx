@@ -1,3 +1,13 @@
+import DashboardHeader from "../../components/dashboard/DashboardHeader";
+import MetricsGrid from "../../components/dashboard/MetricsGrid";
+import RecentTasks from "../../components/dashboard/RecentTasks";
+
 export default function Dashboard() {
-    return <h2>Dashboard</h2>;
+    return (
+        <>
+            <DashboardHeader />
+            <MetricsGrid />
+            <RecentTasks />
+        </>
+    );
 }

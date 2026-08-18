@@ -1,11 +1,21 @@
+import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
+
+import Sidebar from "../components/layout/Sidebar";
+import Header from "../components/layout/Header";
 
 export default function MainLayout() {
   return (
-    <>
-      <h1>InsightFlow</h1>
+    <Box sx={{ display: "flex" }}>
+      <Sidebar />
 
-      <Outlet />
-    </>
+      <Box sx={{ flex: 1 }}>
+        <Header />
+
+        <Box sx={{ p: 4 }}>
+          <Outlet />
+        </Box>
+      </Box>
+    </Box>
   );
 }
