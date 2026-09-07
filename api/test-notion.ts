@@ -1,20 +1,25 @@
 import dotenv from "dotenv";
-import { Client } from "@notionhq/client";
+
+import { NotionGateway } from "./src/adapter/notion/notion.gateway.js";
+import { ProjectsService } from "./src/services/projects.service.js";
+import { CatalogLoader } from "./src/loaders/catalog.loader.js";
+import { projectCache } from "./src/cache/caches.js";
 
 dotenv.config();
 
 async function main() {
-  const notion = new Client({
-    auth: process.env.NOTION_TOKEN?.trim(),
-  });
 
-  try {
-    const me = await notion.users.me();
-    console.log("OK");
-    console.log(me);
-  } catch (err) {
-    console.error(err);
-  }
+  const gateway = new NotionGateway();
+
+  const loader = new CatalogLoader(
+    new ProjectsService(gateway),
+    projectCache
+  );
+
+  await loader.load();
+
+  console.log(projectCache.getAll());
+
 }
 
 main();

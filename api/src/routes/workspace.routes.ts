@@ -16,7 +16,8 @@ const discoverWorkspaceService = new DiscoverWorkspaceService(
 router.post("/workspace/discover", async (_req, res) => {
   try {
     const schema = await discoverWorkspaceService.execute();
-
+    console.log("Registry:", registry.getTables());
+    
     res.json(schema);
   } catch (error) {
     res.status(500).json({

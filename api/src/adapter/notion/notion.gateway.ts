@@ -2,16 +2,18 @@ import { getNotionClient } from "./notion.client.js";
 
 export class NotionGateway {
 
-  async findByName(name: string) {
+  async findByName(name?: string) {
 
-    const notion = getNotionClient();
+  const notion = getNotionClient();
 
-    const response = await notion.search({
-      query: name,
-    });
+  const response = await notion.search({
+    query: "04_Tareas",
+  });
 
-    return response.results;
-  }
+  console.log(response.results);
+
+  return response.results;
+}
 
   async queryDataSource(dataSourceId: string) {
 

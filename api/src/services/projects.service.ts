@@ -1,17 +1,17 @@
 import { NotionGateway } from "../adapter/notion/notion.gateway.js";
 import { workspaceConfig } from "../config/workspace.config.js";
+import { mapProject } from "../domain/project/project.mapper.js";
 import { EntityService } from "../core/entity.service.js";
-import { Task } from "../domain/task/task.js";
-import { mapTask } from "../domain/task/task.mapper.js";
+import { Project } from "../domain/project/project.js";
 
-export class TasksService extends EntityService<Task> {
+export class ProjectsService extends EntityService<Project> {
 
   constructor(gateway: NotionGateway) {
 
     super(
       gateway,
-      workspaceConfig.TASKS.dataSourceId,
-      mapTask
+      workspaceConfig.PROJECTS.dataSourceId,
+      mapProject
     );
 
   }
